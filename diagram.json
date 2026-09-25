@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "author": "ESP32 Smart Greenhouse - Scenario 2",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 76.8, "left": -158.36, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -364.5, "left": -629.4, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 262.4,
+      "left": -911.2,
+      "attrs": {}
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -208.06,
+      "left": 432.23,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 180.4, "left": 825.6, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 658.8,
+      "left": -687.4,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 534,
+      "left": -514.6,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 416.75,
+      "left": -643.2,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 349.55,
+      "left": -268.8,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 572.6,
+      "left": 259.2,
+      "attrs": { "color": "green", "xray": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v57.6", "h153.6", "v182.4", "h297.6", "v115.2" ] ],
+    [ "dht1:SDA", "esp:33", "green", [ "v28.8", "h384.1", "v86.4" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "h393.6", "v480" ] ],
+    [ "ldr1:VCC", "esp:3V3", "red", [ "h28.8", "v-153.6", "h230.4", "v-19.2" ] ],
+    [
+      "ldr1:GND",
+      "esp:GND.1",
+      "black",
+      [ "h57.6", "v-0.4", "h105.6", "v-38.4", "h220.8", "v-9.6" ]
+    ],
+    [ "ldr1:AO", "esp:34", "green", [ "h182.4", "v-154.3", "h28.8" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-76.8", "h-297.45", "v297.6", "h-326.4", "v86.4" ] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v-57.6", "h-153.6", "v316.8", "h-374.4" ] ],
+    [ "oled1:SDA", "esp:21", "purple", [ "v-124.8", "h-143.93", "v355.2", "v182.4" ] ],
+    [ "oled1:SCL", "esp:22", "blue", [ "v-48", "h-86.1", "v432" ] ],
+    [ "servo1:PWM", "esp:18", "orange", [ "h-86.4", "v-47.8" ] ],
+    [ "servo1:V+", "esp:5V", "red", [ "h-28.8", "v96.1", "h-192.15" ] ],
+    [ "servo1:GND", "esp:GND.3", "black", [ "h-67.2", "v-38.4", "h-86.4", "h-19.2" ] ],
+    [ "r1:1", "esp:16", "orange", [ "h633.6", "v-211.2" ] ],
+    [ "r1:2", "led1:A", "orange", [] ],
+    [ "led1:C", "esp:GND.1", "black", [ "h432.4", "v-470.4" ] ],
+    [ "r2:1", "esp:17", "orange", [ "h316.8", "v-153.6" ] ],
+    [ "r2:2", "led2:A", "orange", [] ],
+    [ "led2:C", "esp:GND.1", "black", [ "h326.8", "v-345.6" ] ],
+    [ "esp:19", "btn1:1.l", "violet", [] ],
+    [ "btn1:2.l", "esp:GND.3", "black", [ "h-134.4", "v-441.4" ] ]
+  ],
+  "dependencies": {}
+}
